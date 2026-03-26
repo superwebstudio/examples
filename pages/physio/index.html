@@ -35,29 +35,76 @@
   .nav-links a:hover { color: var(--navy); }
   @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 0 20px; } }
 
-  /* HERO */
-  .hero { min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; }
-  @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 88px 56px 80px 40px; }
-  @media (max-width: 800px) { .hero-left { padding: 88px 28px 48px; order: 2; } }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(42,143,168,0.1); color: var(--teal); border: 1px solid rgba(42,143,168,0.22); font-size: 12px; font-weight: 500; letter-spacing: 0.07em; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; }
-  .hero-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 700; line-height: 1.08; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.02em; }
+  /* HERO — full-bleed image, large type overlaid */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 96px 40px 56px;
+    overflow: hidden;
+  }
+  @media (min-width: 801px) {
+    .hero { justify-content: center; padding: 100px 56px 80px 48px; }
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(155deg, #2A7090 0%, #1A3A5C 100%);
+  }
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 26%;
+    transform: scale(1.1);
+    display: block;
+  }
+  @media (max-width: 800px) {
+    .hero-media img { object-position: center 20%; transform: scale(1.16); transform-origin: center center; }
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      rgba(242, 248, 252, 0.96) 0%,
+      rgba(242, 248, 252, 0.78) 26%,
+      rgba(242, 248, 252, 0.28) 48%,
+      rgba(242, 248, 252, 0.06) 60%,
+      transparent 76%);
+  }
+  @media (max-width: 800px) {
+    .hero-scrim {
+      background: linear-gradient(to top,
+        rgba(242, 248, 252, 0.98) 0%,
+        rgba(242, 248, 252, 0.82) 22%,
+        rgba(242, 248, 252, 0.42) 40%,
+        rgba(242, 248, 252, 0.1) 54%,
+        transparent 70%);
+    }
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(42,143,168,0.1); color: var(--teal); border: 1px solid rgba(42,143,168,0.22); font-size: 12px; font-weight: 500; letter-spacing: 0.07em; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+  .hero-title { font-size: clamp(44px, 10vw, 96px); font-weight: 700; line-height: 1.0; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.03em; text-shadow: 0 2px 28px rgba(255,255,255,0.5); }
   .hero-title span { color: var(--teal); }
-  .hero-desc { font-size: 17px; font-weight: 300; color: var(--mid); max-width: 420px; line-height: 1.75; margin-bottom: 36px; }
+  .hero-desc { font-size: 17px; font-weight: 300; color: var(--mid); max-width: 440px; line-height: 1.75; margin-bottom: 36px; }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: #fff; font-size: 15px; font-weight: 500; padding: 15px 30px; border-radius: 7px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
   .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
   .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--navy); font-size: 15px; font-weight: 400; padding: 15px 24px; border-radius: 7px; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s; }
   .btn-secondary:hover { border-color: var(--mid); }
   .hero-note { margin-top: 20px; font-size: 13px; color: var(--green); font-weight: 500; display: flex; align-items: center; gap: 6px; }
-  .hero-right { position: relative; overflow: hidden; min-height: 50vmin; background: linear-gradient(155deg, #2A7090 0%, #1A3A5C 100%); }
-  @media (max-width: 800px) { .hero-right { min-height: 76svh; order: 1; } }
-  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 26%; transform: scale(1.1); display: block; opacity: 0.82; z-index: 0; }
-  @media (max-width: 800px) {
-    .hero-right img { object-position: center 20%; transform: scale(1.16); transform-origin: center top; }
-  }
-  .hero-right-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(242,248,252,0.8) 0%, rgba(242,248,252,0) 40%); }
-  @media (max-width: 800px) { .hero-right-overlay { background: linear-gradient(180deg, rgba(242,248,252,0.6) 0%, rgba(242,248,252,0) 40%); } }
 
   /* STATS */
   .stats { background: var(--navy); padding: 30px 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
@@ -148,7 +195,11 @@
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-left">
+  <div class="hero-media">
+    <img src="../../assets/physio/hero.png" alt="Align Physiotherapy session" width="1200" height="900" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-inner">
     <div class="hero-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
       Same-week appointments available
@@ -163,10 +214,6 @@
       <a href="#services" class="btn-secondary">View Treatments</a>
     </div>
     <p class="hero-note">✓ Most health insurance accepted</p>
-  </div>
-  <div class="hero-right">
-    <img src="../../assets/physio/hero.png" alt="Align Physiotherapy session" width="1200" height="900" fetchpriority="high" decoding="async">
-    <div class="hero-right-overlay"></div>
   </div>
 </section>
 

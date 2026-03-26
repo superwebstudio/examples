@@ -81,19 +81,26 @@
     .nav-links { display: none; }
   }
 
-  /* ── HERO ── */
+  /* ── HERO — full-bleed image, large type overlaid ── */
   .hero {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
-    padding: 0 28px 80px;
+    padding: 96px 28px 80px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero-bg {
+  @media (min-width: 801px) {
+    .hero {
+      justify-content: center;
+      padding-top: 100px;
+    }
+  }
+
+  .hero-media {
     position: absolute;
     inset: 0;
     z-index: 0;
@@ -103,47 +110,39 @@
       linear-gradient(170deg, #2E1A0E 0%, #1A0D05 55%, #0E0803 100%);
   }
 
-  .hero-photo-wrap {
-    position: absolute;
-    inset: 0 0 0 auto;
-    width: min(58vw, 720px);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .hero-photo-wrap::after {
-    content: '';
+  .hero-media img {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(90deg, var(--espresso) 0%, rgba(26,13,5,0.97) 18%, rgba(26,13,5,0.55) 45%, transparent 78%),
-      linear-gradient(180deg, rgba(26,13,5,0.55) 0%, transparent 22%, transparent 70%, rgba(14,8,3,0.75) 100%);
-  }
-
-  .hero-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 30%;
-    transform: scale(1.08);
+    transform: scale(1.1);
     transform-origin: center center;
+    display: block;
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, var(--espresso) 0%, rgba(26,13,5,0.96) 14%, rgba(26,13,5,0.55) 38%, rgba(26,13,5,0.12) 58%, transparent 78%),
+      linear-gradient(180deg, rgba(26,13,5,0.45) 0%, transparent 28%, transparent 65%, rgba(14,8,3,0.5) 100%);
   }
 
   @media (max-width: 768px) {
-    .hero-photo-wrap {
-      width: 100%;
-      inset: 0;
-      opacity: 0.68;
-    }
-    .hero-photo {
+    .hero-media img {
       object-position: center 22%;
-      transform: scale(1.16);
-      transform-origin: center top;
+      transform: scale(1.18);
+      transform-origin: center center;
+      opacity: 0.92;
     }
-    .hero-photo-wrap::after {
+    .hero-scrim {
       background:
-        linear-gradient(180deg, rgba(26,13,5,0.75) 0%, rgba(26,13,5,0.25) 42%, rgba(26,13,5,0.82) 100%),
-        linear-gradient(90deg, var(--espresso) 0%, transparent 50%);
+        linear-gradient(180deg, rgba(26,13,5,0.82) 0%, rgba(26,13,5,0.35) 42%, rgba(26,13,5,0.9) 100%),
+        linear-gradient(90deg, var(--espresso) 0%, transparent 55%);
     }
   }
 
@@ -159,7 +158,7 @@
   .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 520px;
+    max-width: 640px;
   }
 
   .hero-eyebrow {
@@ -173,11 +172,12 @@
 
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(44px, 11vw, 76px);
-    line-height: 1.0;
+    font-size: clamp(52px, 12vw, 104px);
+    line-height: 0.98;
     font-weight: 400;
     color: var(--cream);
     margin-bottom: 8px;
+    text-shadow: 0 4px 48px rgba(0,0,0,0.45);
   }
 
   .hero-title em {
@@ -248,7 +248,7 @@
     position: absolute;
     bottom: 28px;
     right: 28px;
-    z-index: 3;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -648,11 +648,11 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-photo-wrap">
-    <img class="hero-photo" src="../../assets/cafe/barista.png" alt="Barista preparing coffee at Harbour Brew Co." width="960" height="1280" fetchpriority="high" decoding="async">
+  <div class="hero-media">
+    <img src="../../assets/cafe/barista.png" alt="Barista preparing coffee at Harbour Brew Co." width="960" height="1280" fetchpriority="high" decoding="async">
   </div>
-  <div class="hero-grain"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Specialty Coffee · Dundalk Town Centre</p>
     <h1 class="hero-title">Where the<br><em>good cup</em><br>lives.</h1>

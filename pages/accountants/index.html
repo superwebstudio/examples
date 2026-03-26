@@ -33,32 +33,68 @@
   .nav-links a:hover { color: var(--dark); }
   @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 0 20px; } }
 
-  /* HERO */
-  .hero { min-height: 100svh; display: flex; align-items: center; background: var(--dark); padding: 88px 40px 60px; position: relative; overflow: hidden; }
-  .hero-accent { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: linear-gradient(160deg, #1E3A28 0%, #162028 70%); clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%); pointer-events: none; }
-  .hero-photo { position: absolute; top: 0; right: 0; width: 50%; height: 100%; overflow: hidden; clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%); }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transform: scale(1.08); display: block; opacity: 0.58; }
-  @media (max-width: 800px) {
-    .hero { flex-direction: column; align-items: stretch; padding: 72px 24px 48px; }
-    .hero-accent { display: none; }
-    .hero-photo {
-      position: relative;
-      top: auto;
-      right: auto;
-      order: -1;
-      width: calc(100% + 48px);
-      margin: -16px -24px 28px -24px;
-      height: 72svh;
-      min-height: 400px;
-      max-height: 640px;
-      clip-path: none;
-    }
-    .hero-photo img { opacity: 0.92; object-position: center 22%; transform: scale(1.14); transform-origin: center top; }
+  /* HERO — full-bleed image, large type overlaid */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background: var(--dark);
+    padding: 96px 40px 60px;
+    position: relative;
+    overflow: hidden;
   }
-  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+  @media (min-width: 801px) {
+    .hero { justify-content: center; padding: 100px 40px 72px; }
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(160deg, #1E3A28 0%, #0F1E14 100%);
+  }
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    transform: scale(1.08);
+    display: block;
+    opacity: 0.72;
+  }
+  @media (max-width: 800px) {
+    .hero-media img { object-position: center 22%; transform: scale(1.14); transform-origin: center center; opacity: 0.85; }
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      rgba(22, 32, 40, 0.94) 0%,
+      rgba(22, 32, 40, 0.78) 26%,
+      rgba(22, 32, 40, 0.32) 48%,
+      rgba(22, 32, 40, 0.08) 62%,
+      transparent 78%);
+  }
+  @media (max-width: 800px) {
+    .hero-scrim {
+      background: linear-gradient(to top,
+        rgba(22, 32, 40, 0.97) 0%,
+        rgba(22, 32, 40, 0.8) 22%,
+        rgba(22, 32, 40, 0.38) 42%,
+        rgba(22, 32, 40, 0.1) 54%,
+        transparent 70%);
+    }
+    .hero { padding: 88px 24px 48px; }
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 620px; }
   @media (max-width: 800px) { .hero-content { max-width: none; } }
   .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-light); margin-bottom: 24px; display: block; }
-  .hero-title { font-size: clamp(36px, 5.5vw, 62px); font-weight: 700; line-height: 1.06; color: #fff; margin-bottom: 22px; letter-spacing: -0.02em; }
+  .hero-title { font-size: clamp(42px, 9vw, 92px); font-weight: 700; line-height: 1.02; color: #fff; margin-bottom: 22px; letter-spacing: -0.03em; text-shadow: 0 4px 40px rgba(0,0,0,0.4); }
   .hero-title span { color: var(--green-light); }
   .hero-desc { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 440px; line-height: 1.75; margin-bottom: 36px; }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -151,10 +187,10 @@
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-accent"></div>
-  <div class="hero-photo">
+  <div class="hero-media">
     <img src="../../assets/accountants/hero.png" alt="Meridian Advisory team" width="1200" height="900" fetchpriority="high" decoding="async">
   </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-content">
     <span class="hero-tag">Chartered Accountants · Dundalk</span>
     <h1 class="hero-title">Stop overpaying<br><span>tax.</span> Start<br>growing.</h1>

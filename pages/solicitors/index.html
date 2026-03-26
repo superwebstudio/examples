@@ -35,17 +35,77 @@
   .nav-links a:hover { color: var(--dark); }
   @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 0 20px; } }
 
-  /* HERO */
-  .hero { min-height: 100svh; background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; padding-top: 70px; position: relative; overflow: hidden; }
-  @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
-
-  .hero-grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; }
-
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 60px; position: relative; z-index: 2; }
-  @media (max-width: 800px) { .hero-left { padding: 60px 28px 52px; order: 2; } }
-
-  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px; }
-  .hero-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.1; color: var(--bg); margin-bottom: 24px; }
+  /* HERO — full-bleed image, large type overlaid */
+  .hero {
+    min-height: 100svh;
+    padding: 88px 40px 64px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background: var(--dark);
+  }
+  @media (min-width: 801px) {
+    .hero { justify-content: center; padding: 100px 60px 80px 60px; }
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(160deg, #1A3050 0%, #0D1B2E 100%);
+  }
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    transform: scale(1.1);
+    display: block;
+    opacity: 0.88;
+  }
+  @media (max-width: 800px) {
+    .hero-media img { object-position: center 22%; transform: scale(1.16); transform-origin: center center; }
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+      var(--dark) 0%,
+      rgba(13, 27, 48, 0.88) 22%,
+      rgba(13, 27, 48, 0.35) 48%,
+      rgba(13, 27, 48, 0.12) 62%,
+      transparent 80%);
+  }
+  @media (max-width: 800px) {
+    .hero-scrim {
+      background: linear-gradient(to top,
+        var(--dark) 0%,
+        rgba(13, 27, 48, 0.92) 18%,
+        rgba(13, 27, 48, 0.5) 38%,
+        rgba(13, 27, 48, 0.12) 52%,
+        transparent 70%);
+    }
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 3;
+    max-width: 620px;
+  }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 22px; }
+  .hero-title { font-family: var(--font-display); font-size: clamp(44px, 9vw, 92px); font-weight: 700; line-height: 1.02; color: var(--bg); margin-bottom: 24px; text-shadow: 0 4px 40px rgba(0,0,0,0.35); }
   .hero-title em { font-style: italic; font-weight: 400; color: #C8B898; }
   .hero-desc { font-size: 17px; font-weight: 300; color: rgba(246,241,232,0.65); max-width: 420px; line-height: 1.75; margin-bottom: 40px; }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -54,17 +114,6 @@
   .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--bg); font-family: var(--font-body); font-size: 14px; font-weight: 400; padding: 16px 26px; border-radius: 2px; text-decoration: none; border: 1px solid rgba(246,241,232,0.25); cursor: pointer; transition: border-color 0.2s; }
   .btn-outline:hover { border-color: rgba(246,241,232,0.6); }
   .hero-disclaimer { margin-top: 28px; font-size: 12px; color: rgba(246,241,232,0.3); line-height: 1.5; max-width: 360px; }
-
-  .hero-right { position: relative; min-height: 50vmin; background: linear-gradient(160deg, #1A3050 0%, #0D1B2E 100%); overflow: hidden; }
-  @media (max-width: 800px) { .hero-right { min-height: 78svh; order: 1; } }
-  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transform: scale(1.1); transform-origin: center center; display: block; opacity: 0.78; z-index: 0; }
-  .hero-right-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, var(--dark) 0%, rgba(13,27,48,0.15) 55%, rgba(13,27,48,0.35) 100%); }
-  @media (max-width: 800px) {
-    .hero-right img { object-position: center 22%; transform: scale(1.16); transform-origin: center top; }
-    .hero-right-overlay {
-      background: linear-gradient(to bottom, rgba(13,27,48,0.2) 0%, transparent 40%, rgba(13,27,48,0.85) 88%, var(--dark) 100%);
-    }
-  }
 
   /* TRUST BAR */
   .trust-bar { background: var(--gold); padding: 24px 40px; display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; align-items: center; }
@@ -150,8 +199,12 @@
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-grain"></div>
-  <div class="hero-left">
+  <div class="hero-media">
+    <img src="../../assets/solicitors/hero.png" alt="Brennan and Co. Solicitors" width="1200" height="900" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-inner">
     <p class="hero-eyebrow">Solicitors · Dundalk, Co. Louth</p>
     <h1 class="hero-title">Your legal matters,<br>handled with <em>care</em><br>and precision.</h1>
     <p class="hero-desc">Trusted legal advice for individuals and businesses across the North East. Property, family, commercial and more — speak to a solicitor today.</p>
@@ -160,10 +213,6 @@
       <a href="#areas" class="btn-outline">Our Practice Areas</a>
     </div>
     <p class="hero-disclaimer">All enquiries are treated with complete confidentiality. We are regulated by the Law Society of Ireland.</p>
-  </div>
-  <div class="hero-right">
-    <img src="../../assets/solicitors/hero.png" alt="Brennan and Co. Solicitors" width="1200" height="900" fetchpriority="high" decoding="async">
-    <div class="hero-right-overlay"></div>
   </div>
 </section>
 
