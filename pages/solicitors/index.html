@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brennan &amp; Co. Solicitors — Legal Services, Dundalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F6F1E8;
+    --surface: #EEE7D6;
+    --dark: #0D1B30;
+    --mid: #4A5568;
+    --gold: #B8892E;
+    --gold-light: #D4A848;
+    --border: rgba(13,27,48,0.12);
+    --font-display: 'Libre Baskerville', Georgia, serif;
+    --font-body: 'Source Sans 3', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--dark); font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 70px; background: rgba(246,241,232,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(184,137,46,0.2); }
+  .nav-logo { display: flex; flex-direction: column; }
+  .nav-logo-name { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--dark); letter-spacing: 0.02em; }
+  .nav-logo-sub { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 400; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 400; letter-spacing: 0.04em; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 0 20px; } }
+
+  /* HERO */
+  .hero { min-height: 100svh; background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; padding-top: 70px; position: relative; overflow: hidden; }
+  @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+
+  .hero-grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; }
+
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 60px; position: relative; z-index: 2; }
+  @media (max-width: 800px) { .hero-left { padding: 60px 28px 52px; order: 2; } }
+
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px; }
+  .hero-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.1; color: var(--bg); margin-bottom: 24px; }
+  .hero-title em { font-style: italic; font-weight: 400; color: #C8B898; }
+  .hero-desc { font-size: 17px; font-weight: 300; color: rgba(246,241,232,0.65); max-width: 420px; line-height: 1.75; margin-bottom: 40px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--dark); font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; padding: 16px 32px; border-radius: 2px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--bg); font-family: var(--font-body); font-size: 14px; font-weight: 400; padding: 16px 26px; border-radius: 2px; text-decoration: none; border: 1px solid rgba(246,241,232,0.25); cursor: pointer; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: rgba(246,241,232,0.6); }
+  .hero-disclaimer { margin-top: 28px; font-size: 12px; color: rgba(246,241,232,0.3); line-height: 1.5; max-width: 360px; }
+
+  .hero-right { position: relative; min-height: 50vmin; background: linear-gradient(160deg, #1A3050 0%, #0D1B2E 100%); overflow: hidden; }
+  @media (max-width: 800px) { .hero-right { min-height: 78svh; order: 1; } }
+  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transform: scale(1.1); transform-origin: center center; display: block; opacity: 0.78; z-index: 0; }
+  .hero-right-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, var(--dark) 0%, rgba(13,27,48,0.15) 55%, rgba(13,27,48,0.35) 100%); }
+  @media (max-width: 800px) {
+    .hero-right img { object-position: center 22%; transform: scale(1.16); transform-origin: center top; }
+    .hero-right-overlay {
+      background: linear-gradient(to bottom, rgba(13,27,48,0.2) 0%, transparent 40%, rgba(13,27,48,0.85) 88%, var(--dark) 100%);
+    }
+  }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--gold); padding: 24px 40px; display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; align-items: center; }
+  .trust-item { font-family: var(--font-display); font-size: 14px; color: var(--dark); font-weight: 400; letter-spacing: 0.01em; }
+  .trust-sep { font-size: 18px; color: rgba(13,27,48,0.3); }
+  @media (max-width: 640px) { .trust-sep { display: none; } }
+
+  /* PRACTICE AREAS */
+  .areas { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: block; }
+  .section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.15; color: var(--dark); margin-bottom: 56px; }
+  .section-title em { font-style: italic; font-weight: 400; }
+  .areas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: var(--border); }
+  .area-card { background: var(--bg); padding: 40px 32px; transition: background 0.2s; }
+  .area-card:hover { background: var(--surface); }
+  .area-num { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 20px; display: block; }
+  .area-name { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.2; }
+  .area-desc { font-size: 14px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+  /* ABOUT SPLIT */
+  .about-split { display: grid; grid-template-columns: 1fr 1fr; background: var(--dark); }
+  @media (max-width: 800px) { .about-split { grid-template-columns: 1fr; } }
+  .about-photo { position: relative; min-height: 460px; background: linear-gradient(155deg, #1A3050 0%, #0A1628 100%); overflow: hidden; }
+  .about-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; transform: scale(1.06); display: block; opacity: 0.78; }
+  @media (max-width: 800px) { .about-photo { min-height: 52svh; } }
+  .about-copy { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 800px) { .about-copy { padding: 52px 28px; } }
+  .about-copy .section-tag { color: var(--gold-light); }
+  .about-copy h2 { font-family: var(--font-display); font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; line-height: 1.15; color: var(--bg); margin-bottom: 24px; }
+  .about-copy h2 em { font-style: italic; font-weight: 400; color: #C8B898; }
+  .about-copy p { font-size: 15px; color: rgba(246,241,232,0.6); line-height: 1.75; margin-bottom: 16px; font-weight: 300; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 40px; background: var(--surface); }
+  .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 52px; }
+  .testi-card { background: var(--bg); padding: 36px 32px; border-left: 3px solid var(--gold); }
+  .testi-quote { font-family: var(--font-display); font-size: 17px; font-style: italic; font-weight: 400; color: var(--dark); line-height: 1.6; margin-bottom: 20px; }
+  .testi-author { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+  /* CTA */
+  .cta-section { background: var(--bg); padding: 100px 40px; text-align: center; border-top: 1px solid var(--border); }
+  .cta-section h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--dark); line-height: 1.15; margin-bottom: 16px; }
+  .cta-section h2 em { font-style: italic; font-weight: 400; }
+  .cta-section p { font-size: 16px; color: var(--mid); max-width: 460px; margin: 0 auto 40px; line-height: 1.65; font-weight: 300; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-dark { display: inline-flex; align-items: center; gap: 8px; background: var(--dark); color: var(--bg); font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 16px 32px; border-radius: 2px; text-decoration: none; cursor: pointer; transition: background 0.2s; border: none; }
+  .btn-dark:hover { background: #1a3050; }
+  .btn-border { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--dark); font-family: var(--font-body); font-size: 14px; font-weight: 400; padding: 16px 28px; border-radius: 2px; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s; }
+  .btn-border:hover { border-color: var(--dark); }
+
+  /* FOOTER */
+  footer { background: #080F1A; padding: 52px 40px 32px; display: flex; flex-direction: column; gap: 28px; }
+  .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+  .footer-logo-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--bg); }
+  .footer-logo-sub { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 3px; }
+  .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(246,241,232,0.35); text-decoration: none; }
+  .footer-links a:hover { color: var(--bg); }
+  .footer-bottom { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .footer-copy, .footer-credit { font-size: 12px; color: rgba(246,241,232,0.2); }
+  .footer-credit a { color: rgba(184,137,46,0.5); text-decoration: none; }
+  .footer-credit a:hover { color: var(--gold); }
+
+  /* STICKY MOBILE */
+  .sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(13,27,48,0.97); backdrop-filter: blur(12px); border-top: 1px solid rgba(184,137,46,0.2); padding: 12px 20px 20px; gap: 10px; }
+  @media (max-width: 700px) { .sticky-bar { display: flex; } }
+  .sticky-bar .btn-primary { flex: 1; justify-content: center; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-name">Brennan &amp; Co.</span>
+    <span class="nav-logo-sub">Solicitors</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#areas">Practice Areas</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grain"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Solicitors · Dundalk, Co. Louth</p>
+    <h1 class="hero-title">Your legal matters,<br>handled with <em>care</em><br>and precision.</h1>
+    <p class="hero-desc">Trusted legal advice for individuals and businesses across the North East. Property, family, commercial and more — speak to a solicitor today.</p>
+    <div class="hero-actions">
+      <a href="tel:+35342123456" class="btn-primary">Free Initial Consultation</a>
+      <a href="#areas" class="btn-outline">Our Practice Areas</a>
+    </div>
+    <p class="hero-disclaimer">All enquiries are treated with complete confidentiality. We are regulated by the Law Society of Ireland.</p>
+  </div>
+  <div class="hero-right">
+    <img src="../../assets/solicitors/hero.png" alt="Brennan and Co. Solicitors" width="1200" height="900" fetchpriority="high" decoding="async">
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <span class="trust-item">Over 25 years established</span>
+  <span class="trust-sep">·</span>
+  <span class="trust-item">Law Society of Ireland regulated</span>
+  <span class="trust-sep">·</span>
+  <span class="trust-item">Free initial consultation</span>
+  <span class="trust-sep">·</span>
+  <span class="trust-item">Fixed fee options available</span>
+</div>
+
+<section class="areas" id="areas">
+  <span class="section-tag">What we do</span>
+  <h2 class="section-title">Our practice <em>areas</em></h2>
+  <div class="areas-grid">
+    <div class="area-card">
+      <span class="area-num">01</span>
+      <h3 class="area-name">Residential Property</h3>
+      <p class="area-desc">Buying, selling and transferring residential property. We handle the full conveyancing process with clarity and speed.</p>
+    </div>
+    <div class="area-card">
+      <span class="area-num">02</span>
+      <h3 class="area-name">Family Law</h3>
+      <p class="area-desc">Separation, divorce, custody and maintenance. Sensitive, confidential advice when you need it most.</p>
+    </div>
+    <div class="area-card">
+      <span class="area-num">03</span>
+      <h3 class="area-name">Wills &amp; Probate</h3>
+      <p class="area-desc">Drafting wills, powers of attorney and estate administration. We make complex matters straightforward.</p>
+    </div>
+    <div class="area-card">
+      <span class="area-num">04</span>
+      <h3 class="area-name">Commercial Law</h3>
+      <p class="area-desc">Company formations, contracts, leases and commercial transactions for local businesses and entrepreneurs.</p>
+    </div>
+    <div class="area-card">
+      <span class="area-num">05</span>
+      <h3 class="area-name">Employment Law</h3>
+      <p class="area-desc">Wrongful dismissal, discrimination and workplace disputes. We represent both employers and employees.</p>
+    </div>
+    <div class="area-card">
+      <span class="area-num">06</span>
+      <h3 class="area-name">Litigation &amp; Disputes</h3>
+      <p class="area-desc">Civil litigation, debt recovery and dispute resolution. Expert representation when matters go to court.</p>
+    </div>
+  </div>
+</section>
+
+<div class="about-split" id="about">
+  <div class="about-photo">
+    <img src="../../assets/solicitors/office.png" alt="Our offices" width="1200" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="about-copy">
+    <span class="section-tag">The firm</span>
+    <h2>Trusted legal advice<br>for over <em>two decades.</em></h2>
+    <p>Brennan &amp; Co. has served individuals, families and businesses across Dundalk and the wider North East since 1999. We're a local firm with deep roots in this community.</p>
+    <p>We combine the personal service of a boutique firm with the expertise and resources to handle complex matters. You'll speak to a qualified solicitor from day one — not a paralegal.</p>
+  </div>
+</div>
+
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <span class="section-tag">Client feedback</span>
+    <h2 class="section-title">What our clients <em>say</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"The team handled our house purchase seamlessly. Kept us informed at every step and resolved a title issue quickly. Would use them again without hesitation."</p>
+        <span class="testi-author">— M. Byrne, Dundalk</span>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Going through a separation is never easy, but Brennan &amp; Co. made the legal side as painless as possible. Discreet, thorough and genuinely caring."</p>
+        <span class="testi-author">— Confidential client</span>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Drafted our shareholders' agreement and commercial lease in record time. Practical, commercial advice — exactly what a growing business needs."</p>
+        <span class="testi-author">— Director, local SME</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <span class="section-tag">Get in touch</span>
+  <h2>Arrange a <em>confidential</em> consultation</h2>
+  <p>Your first consultation is free. Call us on <a href="tel:+35342123456" style="color: var(--dark); font-weight: 600;">042 123 456</a>, email or visit our offices on Clanbrassil Street, Dundalk.</p>
+  <div class="cta-actions">
+    <a href="mailto:info@brennanandco.ie" class="btn-dark">Email the Practice</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-name">Brennan &amp; Co.</div>
+      <div class="footer-logo-sub">Solicitors</div>
+    </div>
+    <div class="footer-links">
+      <a href="#areas">Practice Areas</a>
+      <a href="#about">About</a>
+      <a href="mailto:info@brennanandco.ie">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Brennan &amp; Co. Solicitors. Regulated by the Law Society of Ireland.</p>
+    <p class="footer-credit">Site by <a href="#">Superweb Studio</a></p>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <a href="tel:+35342123456" class="btn-primary">Free Consultation — 042 123 456</a>
+</div>
+
+</body>
+</html>

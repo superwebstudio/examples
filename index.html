@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superweb Studio — Demo Landing Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: #0C0E12; color: #E8EAF0; min-height: 100svh; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+    .wrap { max-width: 780px; margin: 0 auto; padding: 64px 24px 56px; }
+
+    header { margin-bottom: 52px; }
+    .brand { font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6370; margin-bottom: 12px; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .sub { color: #6B7480; font-size: 15px; }
+
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #5A6370; margin: 40px 0 14px; }
+
+    ul { list-style: none; }
+
+    a.card {
+      display: grid; grid-template-columns: 4px 1fr; gap: 20px;
+      text-decoration: none; color: inherit;
+      border: 1px solid #1E2530; border-radius: 10px;
+      padding: 20px 22px; margin-bottom: 10px;
+      transition: border-color 0.2s, background 0.2s;
+      background: #131720; align-items: start;
+    }
+    a.card:hover { border-color: #2E3844; background: #171D28; }
+
+    .card-accent { width: 4px; height: 20px; border-radius: 2px; margin-top: 2px; flex-shrink: 0; }
+    .card-body { display: flex; flex-direction: column; gap: 4px; }
+
+    .card-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .card-title { font-weight: 600; font-size: 16px; }
+    .card-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; }
+    .badge-live { background: rgba(34,181,115,0.12); color: #22B573; }
+    .badge-ready { background: rgba(92,120,255,0.12); color: #8090FF; }
+
+    .card-desc { font-size: 14px; color: #6B7480; }
+
+    footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid #1E2530; font-size: 12px; color: #3E454D; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    footer span a { color: #4A5568; text-decoration: none; }
+
+    /* accent colours per niche */
+    .c-aesthetic { background: #C9A46E; }
+    .c-dental     { background: #2A84C0; }
+    .c-solicitors { background: #B8892E; }
+    .c-accountants{ background: #2A8C5C; }
+    .c-trades     { background: #E07028; }
+    .c-salon      { background: #C6A44E; }
+    .c-cafe       { background: #C97D2E; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="brand">Superweb Studio</p>
+      <h1>Client Demo Landings</h1>
+      <p class="sub">Open any page to preview it — each is fully responsive and ready to show.</p>
+    </header>
+
+    <p class="section-label">High-priority niches</p>
+    <ul>
+
+      <li>
+        <a class="card" href="pages/aesthetic/index.html">
+          <div class="card-accent c-aesthetic"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Aesthetic / Cosmetic Clinic</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Lumina Aesthetics — Botox, fillers, laser. Luxury cream &amp; gold. Booking-first layout. Free consultation CTA.</p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="card" href="pages/dental/index.html">
+          <div class="card-accent c-dental"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Dental Clinic</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Ivory Dental Care — general, implants, whitening, Invisalign. Navy &amp; blue. Trust-led, new patient focus.</p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="card" href="pages/solicitors/index.html">
+          <div class="card-accent c-solicitors"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Solicitors</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Brennan &amp; Co. — property, family, wills, commercial. Deep navy &amp; gold, authoritative serif design.</p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="card" href="pages/accountants/index.html">
+          <div class="card-accent c-accountants"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Accountants / Financial Advisors</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Meridian Advisory — tax, bookkeeping, payroll. Dark forest green. ROI &amp; free review CTA.</p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="card" href="pages/trades/index.html">
+          <div class="card-accent c-trades"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Trades / Construction</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Ironclad Build — extensions, renovation, new builds. Near-black &amp; bold orange. Project grid, process steps.</p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="card" href="pages/barber/index.html">
+          <div class="card-accent c-salon"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Premium Salon / Barber / Beauty</span>
+              <span class="card-badge badge-ready">Ready</span>
+            </div>
+            <p class="card-desc">Studio Noire — hair, colour, treatments. Editorial near-black &amp; gold. Services menu + gallery grid.</p>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+
+    <p class="section-label">Existing demo</p>
+    <ul>
+      <li>
+        <a class="card" href="pages/cafe/index.html">
+          <div class="card-accent c-cafe"></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-title">Café</span>
+              <span class="card-badge badge-live">Live</span>
+            </div>
+            <p class="card-desc">Harbour Brew Co. — specialty coffee, Dundalk. Espresso &amp; amber palette. Menu, hours, sticky mobile bar.</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <footer>
+      <span>7 demos · <code style="color:#5A6370;">/pages/{niche}/index.html</code></span>
+      <span>Shared components in <code style="color:#5A6370;">/components/</code></span>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Advisory — Accountants &amp; Financial Advisors, Dundalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F7F5;
+    --surface: #EAEEEA;
+    --dark: #162028;
+    --mid: #4A5C50;
+    --green: #287A54;
+    --green-light: #35A06E;
+    --border: rgba(22,32,40,0.1);
+    --font: 'Manrope', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--dark); font-family: var(--font); font-weight: 300; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 66px; background: rgba(245,247,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-weight: 700; font-size: 17px; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--green); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 0 20px; } }
+
+  /* HERO */
+  .hero { min-height: 100svh; display: flex; align-items: center; background: var(--dark); padding: 88px 40px 60px; position: relative; overflow: hidden; }
+  .hero-accent { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: linear-gradient(160deg, #1E3A28 0%, #162028 70%); clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%); pointer-events: none; }
+  .hero-photo { position: absolute; top: 0; right: 0; width: 50%; height: 100%; overflow: hidden; clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transform: scale(1.08); display: block; opacity: 0.58; }
+  @media (max-width: 800px) {
+    .hero { flex-direction: column; align-items: stretch; padding: 72px 24px 48px; }
+    .hero-accent { display: none; }
+    .hero-photo {
+      position: relative;
+      top: auto;
+      right: auto;
+      order: -1;
+      width: calc(100% + 48px);
+      margin: -16px -24px 28px -24px;
+      height: 72svh;
+      min-height: 400px;
+      max-height: 640px;
+      clip-path: none;
+    }
+    .hero-photo img { opacity: 0.92; object-position: center 22%; transform: scale(1.14); transform-origin: center top; }
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+  @media (max-width: 800px) { .hero-content { max-width: none; } }
+  .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-light); margin-bottom: 24px; display: block; }
+  .hero-title { font-size: clamp(36px, 5.5vw, 62px); font-weight: 700; line-height: 1.06; color: #fff; margin-bottom: 22px; letter-spacing: -0.02em; }
+  .hero-title span { color: var(--green-light); }
+  .hero-desc { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 440px; line-height: 1.75; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; font-size: 15px; font-weight: 500; padding: 15px 30px; border-radius: 7px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; font-size: 15px; font-weight: 400; padding: 15px 24px; border-radius: 7px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.55); }
+
+  /* STATS */
+  .stats { background: var(--green); padding: 32px 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
+  .stat-item { text-align: center; padding: 8px 48px; }
+  .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,0.2); }
+  @media (max-width: 640px) { .stat-item { padding: 10px 20px; } .stat-item + .stat-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.15); } }
+  .stat-num { font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+
+  /* SERVICES */
+  .services { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; display: block; }
+  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.12; color: var(--dark); margin-bottom: 54px; letter-spacing: -0.02em; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .service-card { padding: 36px 28px; border: 1px solid var(--border); border-radius: 10px; background: #fff; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .service-card:hover { border-color: var(--green); box-shadow: 0 6px 28px rgba(40,122,84,0.1); transform: translateY(-2px); }
+  .service-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(40,122,84,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--green); }
+  .service-name { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+  .service-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+
+  /* VALUE PROP */
+  .value-section { background: var(--surface); padding: 100px 40px; }
+  .value-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  @media (max-width: 800px) { .value-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .value-copy p { font-size: 16px; color: var(--mid); line-height: 1.75; margin-bottom: 18px; font-weight: 300; }
+  .value-list { list-style: none; margin: 32px 0; }
+  .value-list li { display: flex; gap: 12px; font-size: 15px; color: var(--dark); padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; font-weight: 400; }
+  .value-list li:last-child { border-bottom: none; }
+  .value-list li span { color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .value-photo { position: relative; min-height: 420px; border-radius: 10px; background: linear-gradient(145deg, #1E3A28 0%, #0F1E14 100%); overflow: hidden; }
+  .value-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transform: scale(1.06); border-radius: 10px; display: block; }
+  @media (max-width: 800px) { .value-photo { min-height: 52svh; } }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 52px; }
+  .testi-card { padding: 32px 28px; background: #fff; border-radius: 10px; border: 1px solid var(--border); }
+  .testi-stars { color: #F5A623; font-size: 14px; margin-bottom: 16px; }
+  .testi-quote { font-size: 15px; color: var(--dark); line-height: 1.65; margin-bottom: 16px; font-style: italic; font-weight: 300; }
+  .testi-author { font-size: 13px; color: var(--mid); font-weight: 500; }
+
+  /* CTA */
+  .cta-section { background: var(--dark); padding: 90px 40px; text-align: center; }
+  .cta-section .section-tag { color: var(--green-light); }
+  .cta-section h2 { font-size: clamp(28px, 4.5vw, 46px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .cta-section h2 span { color: var(--green-light); }
+  .cta-section p { font-size: 16px; color: rgba(255,255,255,0.55); max-width: 440px; margin: 0 auto 36px; line-height: 1.65; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-green { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; font-size: 15px; font-weight: 600; padding: 15px 32px; border-radius: 7px; text-decoration: none; cursor: pointer; transition: background 0.2s; border: none; }
+  .btn-green:hover { background: var(--green-light); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; font-size: 15px; font-weight: 400; padding: 15px 28px; border-radius: 7px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.2s; }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
+
+  /* FOOTER */
+  footer { background: #0A1210; padding: 52px 40px 32px; display: flex; flex-direction: column; gap: 28px; }
+  .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-weight: 700; font-size: 17px; color: #fff; letter-spacing: -0.01em; }
+  .footer-logo span { color: var(--green-light); }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.28); margin-top: 4px; }
+  .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .footer-copy, .footer-credit { font-size: 12px; color: rgba(255,255,255,0.2); }
+  .footer-credit a { color: rgba(53,160,110,0.5); text-decoration: none; }
+  .footer-credit a:hover { color: var(--green-light); }
+
+  /* STICKY MOBILE */
+  .sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(22,32,40,0.97); backdrop-filter: blur(12px); border-top: 1px solid rgba(40,122,84,0.2); padding: 12px 20px 20px; gap: 10px; }
+  @media (max-width: 700px) { .sticky-bar { display: flex; } }
+  .sticky-bar .btn-green { flex: 1; justify-content: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#home">Meridian<span>Advisory</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-accent"></div>
+  <div class="hero-photo">
+    <img src="../../assets/accountants/hero.png" alt="Meridian Advisory team" width="1200" height="900" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">Chartered Accountants · Dundalk</span>
+    <h1 class="hero-title">Stop overpaying<br><span>tax.</span> Start<br>growing.</h1>
+    <p class="hero-desc">Proactive, year-round accounting and financial advice for small businesses and individuals. We find money others miss.</p>
+    <div class="hero-actions">
+      <a href="tel:+35342123456" class="btn-primary">Get a Free Review</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Clients served</div></div>
+  <div class="stat-item"><div class="stat-num">€2M+</div><div class="stat-label">Tax savings found</div></div>
+  <div class="stat-item"><div class="stat-num">20 yrs</div><div class="stat-label">In practice</div></div>
+  <div class="stat-item"><div class="stat-num">CPA</div><div class="stat-label">Fully qualified</div></div>
+</div>
+
+<section class="services" id="services">
+  <span class="section-tag">What we offer</span>
+  <h2 class="section-title">Accounting services that<br>actually move the needle.</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h3 class="service-name">Tax Returns &amp; Planning</h3>
+      <p class="service-desc">Personal and corporate tax returns, filed on time every time. We actively plan to minimise your liability.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <h3 class="service-name">Bookkeeping</h3>
+      <p class="service-desc">Monthly bookkeeping, bank reconciliation and management accounts. Always know where your business stands.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <h3 class="service-name">Payroll Services</h3>
+      <p class="service-desc">Weekly, fortnightly or monthly payroll processing. PAYE, PRSI and USC handled precisely and on time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3 class="service-name">VAT Returns</h3>
+      <p class="service-desc">Bi-monthly VAT returns filed accurately. We review your VAT position to ensure you're not overpaying.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <h3 class="service-name">Start-up Advisory</h3>
+      <p class="service-desc">Company formation, structure advice, grant applications and financial projections for new businesses.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+      <h3 class="service-name">Year-End Accounts</h3>
+      <p class="service-desc">Full year-end accounts preparation and filing with Revenue and the CRO. Clear, jargon-free reports for you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="value-section" id="about">
+  <div class="value-inner">
+    <div class="value-copy">
+      <span class="section-tag">Why Meridian</span>
+      <h2 class="section-title" style="margin-bottom: 24px;">We're proactive,<br>not reactive.</h2>
+      <p>Most accountants wait for you to come to them. We don't. We review your accounts throughout the year, flag opportunities and alert you before deadlines — not after.</p>
+      <p>We work primarily with SMEs, sole traders and landlords who want more from their accountant than just compliance.</p>
+      <ul class="value-list">
+        <li><span>✓</span> Dedicated point of contact — call us any time</li>
+        <li><span>✓</span> Fixed monthly fees, no surprise bills</li>
+        <li><span>✓</span> Cloud accounting setup included (Xero / Quickbooks)</li>
+        <li><span>✓</span> Fully CPA Ireland regulated</li>
+      </ul>
+    </div>
+    <div class="value-photo">
+      <img src="../../assets/accountants/office.png" alt="Meridian Advisory office" width="900" height="700" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <span class="section-tag">Client results</span>
+  <h2 class="section-title">Real outcomes for<br>real businesses.</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Switched to Meridian two years ago and they immediately found €8,000 in tax savings I'd been missing. Best business decision I've made."</p>
+      <span class="testi-author">— John M., Dundalk</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"They set up my company, handled the grant application and had my accounts sorted within weeks. I can actually run my business now instead of drowning in paperwork."</p>
+      <span class="testi-author">— Aoife B., Drogheda</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Always available, always on top of things. My previous accountant never called me — Meridian proactively flagged a pension opportunity that saved me €12k a year."</p>
+      <span class="testi-author">— Mark P., Ardee</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <span class="section-tag">Get started</span>
+  <h2>Let's find money<br>you're <span>leaving behind.</span></h2>
+  <p>Free initial review — no obligation. Call <a href="tel:+35342123456" style="color: rgba(255,255,255,0.95); font-weight: 600;">042 123 456</a> or send a message and we'll be back to you today.</p>
+  <div class="cta-actions">
+    <a href="mailto:hello@meridianadvisory.ie" class="btn-green">Email Us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Meridian<span>Advisory</span></div>
+      <p class="footer-tagline">Chartered accountants · Dundalk</p>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="mailto:hello@meridianadvisory.ie">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Meridian Advisory. CPA Ireland regulated.</p>
+    <p class="footer-credit">Site by <a href="#">Superweb Studio</a></p>
+  </div>
+</footer>
+
+<div class="sticky-bar">
+  <a href="tel:+35342123456" class="btn-green">Free Review — 042 123 456</a>
+</div>
+
+</body>
+</html>

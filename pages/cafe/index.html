@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harbour Brew Co. — Specialty Coffee, Dundalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --espresso: #1A0D05;
+    --roast: #2E1A0E;
+    --bark: #5C3D1E;
+    --cream: #F6EDD8;
+    --parchment: #EFE0C0;
+    --amber: #C97D2E;
+    --amber-light: #E09840;
+    --mist: rgba(246,237,216,0.08);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--espresso);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: rgba(26,13,5,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,125,46,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: var(--cream);
+  }
+
+  .nav-logo span { color: var(--amber); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(246,237,216,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 28px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(92,61,30,0.55) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,125,46,0.12) 0%, transparent 60%),
+      linear-gradient(170deg, #2E1A0E 0%, #1A0D05 55%, #0E0803 100%);
+  }
+
+  .hero-photo-wrap {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: min(58vw, 720px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, var(--espresso) 0%, rgba(26,13,5,0.97) 18%, rgba(26,13,5,0.55) 45%, transparent 78%),
+      linear-gradient(180deg, rgba(26,13,5,0.55) 0%, transparent 22%, transparent 70%, rgba(14,8,3,0.75) 100%);
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.08);
+    transform-origin: center center;
+  }
+
+  @media (max-width: 768px) {
+    .hero-photo-wrap {
+      width: 100%;
+      inset: 0;
+      opacity: 0.68;
+    }
+    .hero-photo {
+      object-position: center 22%;
+      transform: scale(1.16);
+      transform-origin: center top;
+    }
+    .hero-photo-wrap::after {
+      background:
+        linear-gradient(180deg, rgba(26,13,5,0.75) 0%, rgba(26,13,5,0.25) 42%, rgba(26,13,5,0.82) 100%),
+        linear-gradient(90deg, var(--espresso) 0%, transparent 50%);
+    }
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 520px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 11vw, 76px);
+    line-height: 1.0;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--parchment);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(246,237,216,0.65);
+    margin: 20px 0 36px;
+    max-width: 380px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--amber);
+    color: var(--espresso);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 14px 28px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 14px 24px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid rgba(246,237,216,0.25);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(246,237,216,0.5);
+    background: rgba(246,237,216,0.05);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+  }
+
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    color: var(--cream);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--cream));
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 28px; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(201,125,46,0.2);
+    margin: 0 28px;
+    width: calc(100% - 56px);
+  }
+
+  /* ── MENU ── */
+  .menu-section { background: var(--roast); }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .menu-category { margin-bottom: 52px; }
+
+  .menu-category-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201,125,46,0.2);
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(246,237,216,0.07);
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+
+  .menu-item-info { flex: 1; }
+
+  .menu-item-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--cream);
+    display: block;
+  }
+
+  .menu-item-desc {
+    font-size: 13px;
+    color: rgba(246,237,216,0.45);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .menu-item-price {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--amber-light);
+    margin-left: 20px;
+    white-space: nowrap;
+  }
+
+  .menu-note {
+    font-size: 13px;
+    color: rgba(246,237,216,0.4);
+    margin-top: 32px;
+    padding: 14px 18px;
+    border-left: 2px solid rgba(201,125,46,0.35);
+    line-height: 1.6;
+  }
+
+  /* ── HOURS + LOCATION ── */
+  .info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 90px 28px;
+  }
+
+  @media (max-width: 640px) {
+    .info-section {
+      grid-template-columns: 1fr;
+      gap: 52px;
+    }
+  }
+
+  .hours-table { width: 100%; }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(246,237,216,0.08);
+    font-size: 14px;
+  }
+
+  .hours-row:last-child { border-bottom: none; }
+
+  .hours-day { color: rgba(246,237,216,0.55); font-weight: 400; }
+  .hours-time { color: var(--cream); font-weight: 400; }
+  .hours-today .hours-day,
+  .hours-today .hours-time { color: var(--amber-light); }
+  .hours-today .hours-day::after {
+    content: ' ·';
+    font-weight: 500;
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.5;
+  }
+
+  .contact-item a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contact-item a:hover { color: var(--amber-light); }
+
+  .contact-item p {
+    font-size: 14px;
+    color: rgba(246,237,216,0.7);
+    line-height: 1.5;
+  }
+
+  .find-us-photo {
+    margin: 28px 0 0;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    max-height: 300px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(201,125,46,0.22);
+    background: rgba(92,61,30,0.2);
+  }
+
+  .find-us-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--amber);
+    padding: 60px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .cta-band h2 {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 400;
+    color: var(--espresso);
+    line-height: 1.2;
+  }
+
+  .cta-band h2 em { font-style: italic; }
+
+  .cta-band p {
+    font-size: 15px;
+    color: rgba(26,13,5,0.65);
+    max-width: 400px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--espresso);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 14px 28px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-dark:hover { background: var(--roast); }
+
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--espresso);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 14px 24px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid rgba(26,13,5,0.3);
+    cursor: pointer;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0E0803;
+    padding: 44px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--cream);
+  }
+
+  .footer-logo span { color: var(--amber); }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(246,237,216,0.35);
+    margin-top: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(246,237,216,0.4);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-links a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid rgba(246,237,216,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(246,237,216,0.25);
+  }
+
+  .footer-credit {
+    font-size: 12px;
+    color: rgba(246,237,216,0.25);
+  }
+
+  .footer-credit a {
+    color: rgba(201,125,46,0.6);
+    text-decoration: none;
+  }
+
+  .footer-credit a:hover { color: var(--amber); }
+
+  /* ── STICKY MOBILE CTA ── */
+  .sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(26,13,5,0.96);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(201,125,46,0.2);
+    padding: 12px 20px 20px;
+    gap: 10px;
+  }
+
+  @media (max-width: 700px) {
+    .sticky-bar { display: flex; }
+  }
+
+  .sticky-bar .btn-primary { flex: 1; justify-content: center; font-size: 15px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.7s ease both 0.2s; }
+  .hero-title { animation: fadeUp 0.7s ease both 0.35s; }
+  .hero-sub { animation: fadeUp 0.7s ease both 0.5s; }
+  .hero-actions { animation: fadeUp 0.7s ease both 0.65s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Harbour Brew<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#find-us">Find Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-photo-wrap">
+    <img class="hero-photo" src="../../assets/cafe/barista.png" alt="Barista preparing coffee at Harbour Brew Co." width="960" height="1280" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Specialty Coffee · Dundalk Town Centre</p>
+    <h1 class="hero-title">Where the<br><em>good cup</em><br>lives.</h1>
+    <p class="hero-sub">Hand-crafted espresso, fresh toasties, and a place worth lingering in. Open seven days.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="#find-us" class="btn-secondary">Find Us</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <p class="section-label">What we serve</p>
+  <h2 class="section-title">The <em>menu</em></h2>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px 60px;">
+
+    <div class="menu-category">
+      <p class="menu-category-title">Coffee &amp; Hot Drinks</p>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Flat White</span>
+          <span class="menu-item-desc">Double ristretto, silky microfoam</span>
+        </div>
+        <span class="menu-item-price">€3.80</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Filter of the Day</span>
+          <span class="menu-item-desc">Single origin, rotating weekly</span>
+        </div>
+        <span class="menu-item-price">€3.20</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Oat Latte</span>
+          <span class="menu-item-desc">Oatly barista, espresso blend</span>
+        </div>
+        <span class="menu-item-price">€4.40</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Matcha Latte</span>
+          <span class="menu-item-desc">Ceremonial grade, steamed milk</span>
+        </div>
+        <span class="menu-item-price">€4.80</span>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <p class="menu-category-title">Food &amp; Pastries</p>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Sourdough Toastie</span>
+          <span class="menu-item-desc">Cheddar &amp; caramelised onion</span>
+        </div>
+        <span class="menu-item-price">€7.50</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Avocado Toast</span>
+          <span class="menu-item-desc">Whipped feta, chilli flakes, seeds</span>
+        </div>
+        <span class="menu-item-price">€9.00</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Croissant</span>
+          <span class="menu-item-desc">Plain or almond, baked fresh daily</span>
+        </div>
+        <span class="menu-item-price">€3.50</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <span class="menu-item-name">Granola Bowl</span>
+          <span class="menu-item-desc">House granola, yoghurt, seasonal fruit</span>
+        </div>
+        <span class="menu-item-price">€8.00</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="menu-note">Full menu available in-store &amp; updated seasonally. Allergen info available on request. We always have oat, soy &amp; almond milk.</p>
+</section>
+
+<!-- HOURS + CONTACT -->
+<div class="info-section" id="hours">
+
+  <div>
+    <p class="section-label">When we're open</p>
+    <h2 class="section-title" style="font-size: clamp(24px, 5vw, 36px); margin-bottom: 32px;">Opening <em>Hours</em></h2>
+    <div class="hours-table">
+      <div class="hours-row hours-today">
+        <span class="hours-day">Tuesday</span>
+        <span class="hours-time">07:30 – 17:00</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Mon – Fri</span>
+        <span class="hours-time">07:30 – 17:00</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Saturday</span>
+        <span class="hours-time">08:00 – 17:00</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day">Sunday</span>
+        <span class="hours-time">09:00 – 15:00</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="find-us">
+    <p class="section-label">Find us</p>
+    <h2 class="section-title" style="font-size: clamp(24px, 5vw, 36px); margin-bottom: 32px;"><em>Come</em> say hello</h2>
+    <div class="contact-detail">
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p>14 Clanbrassil Street<br>Dundalk, Co. Louth<br>A91 XK20</p>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.5 4.82 2 2 0 012.49 2.64L5.5 2.63a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.5 10.54a16 16 0 006.97 6.97l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <a href="tel:+35342123456">042 123 456</a>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:hello@harbourbrewco.ie">hello@harbourbrewco.ie</a>
+      </div>
+    </div>
+    <figure class="find-us-photo">
+      <img src="../../assets/cafe/customer.png" alt="Guests enjoying coffee in our Dundalk café" width="960" height="720" loading="lazy" decoding="async">
+    </figure>
+  </div>
+
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to <em>order?</em></h2>
+  <p>For large orders call <a href="tel:+35342123456" style="color: var(--cream); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">042 123 456</a>, WhatsApp us below, or just walk in — we always have a spot for you.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/35342123456" class="btn-dark">
+      WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Harbour Brew<span>.</span></div>
+      <p class="footer-tagline">Specialty coffee · Dundalk</p>
+    </div>
+    <div class="footer-links">
+      <a href="#menu">Menu</a>
+      <a href="#hours">Hours</a>
+      <a href="#find-us">Find Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Harbour Brew Co. All rights reserved.</p>
+    <p class="footer-credit">Site by <a href="#">Superweb Studio</a></p>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <a href="#menu" class="btn-primary">
+    View Menu
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+</div>
+
+</body>
+</html>
